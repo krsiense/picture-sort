@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="/stylesheets/time-index.css">
+    <link rel="stylesheet" href="/stylesheets/time.css">
+
+    <style>
+        /* 模态框样式 */
+        .modal {
+          display: none; /* 默认隐藏 */
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.4); /* 半透明背景 */
+        }
+        
+        /* 模态框内容样式 */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto; /* 15% 顶部和底部距离 */
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%; /* 设置模态框宽度 */
+        }
+        
+        /* 关闭按钮样式 */
+        .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+    <div id="topdiv"></div>
+    <div id="outdiv">
+        <div class="guidance">
+            <!-- 导航栏 -->
+            <h3>Jigsaw</h3>
+            <div clss="guidance_button">
+                <a href="/index">图片上传</a>
+            </div>
+            <!-- <div clss="guidance_button">
+                <a href="/attribute">图片属性</a>
+            </div> -->
+            <div clss="guidance_button" style="background-color: chocolate;">
+                <a href="/time">预测时间</a>
+            </div>
+            <!-- <div clss="guidance_button">
+                <a href="/picdata">图片库</a>
+            </div> -->
+            <div clss="guidance_button">
+                <a href="/colorpick">颜色筛选</a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="left-pics">
+                <!-- 设置搜索栏 -->
+                <div class="search-label">
+                    <div style="display: flex;height: 100%;align-items: center;margin-right:5%">
+                        <input type="text" style="width:65%;margin-right:5%;margin-left:5%;" id="search-text" >
+                        <button id="search" onclick=search_click()>搜索</button>
+                    </div>
+                    <span></span>
+                    <div style="display: flex;">
+                        <div class="select" style="display: flex; flex-direction: column;"> 
+                            <div>
+                                <form action="">
+                                    <input type="radio" name="cut" id="a_6" value="true" checked>
+                                    <label for="a_6" style="color: green;">8*8</label>
+                                    <input type="radio" name="cut" id="a_10" value="false">
+                                    <label for="a_10" style="color: green;">10*10</label>
+                                </form>
+                            </div>
+                            <div>
+                                <label >大于：</label><input type="text" id="mintime" value=""><br>
+                                <label >小于：</label><input type="text" id="maxtime" value=""><br>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="button" name="" id="sure" onclick=sure_show() style="margin-top: 3vh;margin-left:10px" value="筛选">
+                        </div>
+                        <span></span>
+                        <div>
+                            <input type="radio" name="sel" id="upsort" onclick=upshow() style="margin-top: 3vh;margin-left:10px" value="升序">
+                            <label for="a_6" style="color: green;">升序</label>
+                            <input type="radio" name="sel" id="downsort" onclick=downshow() style="margin-top: 3vh;margin-left:10px" value="降序">
+                            <label for="a_6" style="color: green;">降序</label>
+                            <input type="radio" name="sel" id="timesort" onclick=showpic_all() style="margin-top: 3vh;margin-left:10px" value="上传时间" checked>
+                            <label for="a_6" style="color: green;">上传时间</label>
+                        </div>
+                    </div>
+                    <!-- <button id="shaixuan" onclick="">筛选</button> -->
+                    <!-- 模态框 -->
+                    <!-- <div id="myModal" class="modal">
+                         
+                        <div class="modal-content">
+                        <span class="close">&times;</span>  
+                        <div>
+                            <label>时间：</label><span></span><label>64:</label><input type="checkbox" id="a_6" ><label>100</label><input type="checkbox" id="a_10"><br>
+                            <label >大于：</label><input type="text" id="mintime" value=""><br>
+                            <label >小于：</label><input type="text" id="maxtime" value=""><br>
+                        </div>
+                        
+                        <div>
+                            <button id="shaixuan-over">确定</button>
+                        </div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- 设置筛选格式 -->
+                <div class="time-pic-show" style=" overflow: auto;">
+                    <div  id="in-time-pic-show" style="height:1000px; background-color: #f0f0f0; display: flex;flex-wrap: wrap;align-content: flex-start;"></div>
+                    <!-- 这里需要一个js用来获取本次上传的图片，并且显示出来 -->
+                </div>
+            </div>
+            <div class="middle-mainbody">
+                    <div id="picture-show" style="background-size: cover;"></div>
+                    <label id="time_64" for=""></label><br>
+                    <label id="time_100" for=""></label><br>
+                    <label id="date"></label>
+                    
+                    <!-- <input type="button" style="margin-top: 20px; width: 70px;" value="8*8分割" onclick=get_img64()> <span></span> <input type="button" style="margin-top: 20px;width: 70px;" value="10*10分割" onclick=get_img100()>
+                     -->
+            </div>
+            
+        </div>
+    </div>
+    <script src="/javascripts/time.js"></script>
+</body>
+</html>

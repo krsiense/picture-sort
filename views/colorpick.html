@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="/stylesheets/colorpic-index.css">
+    <link rel="stylesheet" href="/stylesheets/colorpic.css">
+    <link rel="stylesheet" href="/stylesheets/seban.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/tinycolor/1.4.2/tinycolor.js"></script>
+</head>
+<body>
+<div id="topdiv"></div>
+<div id="outdiv">
+    <div class="guidance">
+        <!-- 导航栏 -->
+        <h3>Jigsaw</h3>
+        <div class="guidance_button" >
+            <a href="/index">图片上传</a>
+        </div>
+        <!-- <div class="guidance_button">
+            <a href="/attribute">图片属性</a>
+        </div> -->
+        <div class="guidance_button">
+            <a href="/time">预测时间</a>
+        </div>
+        <!-- <div class="guidance_button">
+            <a href="/picdata">图片库</a>
+        </div> -->
+        <div class="guidance_button" style="background-color: chocolate;">
+            <a href="/colorpick">颜色筛选</a>
+        </div>
+    </div>
+    <div class="main" >
+
+        <div style="height:100%;width:100%;">
+            <div class="tools" id="tools">
+                <div class="left-tools" id="leftTools">
+                    <!-- 左侧工具栏的内容 -->
+                    <!-- 色板 -->
+                    <div style="display: flex;">
+                        <div class="seban" onclick="openModal()" ></div>
+                        <div id="picture-show" style="width:50px;height:50px;margin-left: 4vw;"></div>
+                    </div>
+                    <div class="modal-overlay" id="modalOverlay">
+                            <div class="modal" id="modal">
+                                <div class="modal-border" id="modal-border"></div>
+                                <span class="close-btn" onclick="closeModal()">×</span>
+
+                                <div class="color-picker">
+                                    <!-- 颜色显示区域 -->
+                                    <div class="color-container">
+                                        <!-- 颜色色块 -->
+                                        <div class="color-show" id="color-show-rgb"></div>
+                                    </div>       
+                            
+                                    <!-- 颜色控制区 -->
+                                    <div class="color-control">
+                                        <!-- 颜色选择区 -->
+                                        <div class="color-move">
+                                            <canvas></canvas>
+                                            <div class="move"></div>
+                                        </div>
+                            
+                                        <!-- 透明度 -->
+                                        <!-- <div class="color-opacity">
+                                            <div class="color-opacity-show"></div>
+                                            <div class="slide"></div>
+                                        </div> -->
+                            
+                                        <!-- 色相选择 -->
+                                        <div class="hue">
+                                            <div class="slide"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message" style="display: flex; flex-direction: row;">
+                                    <label for="">R:</label>
+                                    <input type="text"id="R" style="border: none; /* 移除默认边框 */
+                                    border-bottom: 1px solid black; /* 添加下划线 */
+                                    outline: none; /* 移除默认的轮廓样式 */
+                                    width: 10%;"><br>
+                                    <label for="">G:</label>
+                                    <input type="text" id="G" style="border: none; /* 移除默认边框 */
+                                    border-bottom: 1px solid black; /* 添加下划线 */
+                                    outline: none; /* 移除默认的轮廓样式 */
+                                    width: 10%;"><br>
+                                    <label for="">B:</label>
+                                    <input type="text" id="B" style="border: none; /* 移除默认边框 */
+                                    border-bottom: 1px solid black; /* 添加下划线 */
+                                    outline: none; /* 移除默认的轮廓样式 */
+                                    width: 10%;">
+
+                                    <input type="button" name="" id="" value="确定" onclick=input_rgb()>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <div>
+                        <div class="lock-color">
+                            <input type="radio" name="lock" onclick=getcolor(255,255,255)>
+                            <label for="">(255,255,255)</label>
+                            <div style="background-color: white; width:1vw;height:1vw;margin-left:20px"></div>
+                        </div>
+                        <div class="lock-color">
+                            <input type="radio" name="lock" onclick=getcolor(255,0,0)>
+                            <label for="">(255,0,0)</label>
+                            <div style="background-color: red; width:1vw;height:1vw;margin-left:20px"></div>
+                        </div>
+                        <div class="lock-color">
+                            <input type="radio" name="lock" onclick=getcolor(0,255,0)>
+                            <label for="">(0,255,0)</label>
+                            <div style="background-color: rgb(0, 255, 0); width:1vw;height:1vw;margin-left:20px"></div>
+                        </div>
+                        <div class="lock-color">
+                            <input type="radio" name="lock" onclick=getcolor(0,0,255)>
+                            <label for="">(0,0,255)</label>
+                            <div style="background-color: rgb(0,0,255); width:1vw;height:1vw;margin-left:20px"></div>
+                        </div>
+                        <div class="lock-color">
+                            <input type="radio" name="lock" onclick=getcolor(255,255,0)>
+                            <label for="">(255,255,0)</label>
+                            <div style="background-color: rgb(255,255,0); width:1vw;height:1vw;margin-left:20px"></div>
+                        </div>
+                        <div class="lock-color">
+                            <input type="radio" name="lock" onclick=getcolor(0,0,0)>
+                            <label for="">(0,0,0)</label>
+                            <div style="background-color: rgb(0,0,0); width:1vw;height:1vw;margin-left:20px"></div>
+                        </div>
+                        <div class="lock-color">
+                            <input type="button"value="123" onclick=mytest()>
+                           
+                        </div>
+                       
+                    </div>
+                </div> 
+                <div class="toggle-icon" id="toggleButton">
+                    工具栏
+
+                </div> <!-- 添加一个点击切换按钮 -->
+                
+        
+            </div>
+            <div class="pic-body" id="pic-body" >
+                <div  id="in-color-pic-show" style="height:100%;width: 98%; background-color: #f0f0f0; display: flex;flex-wrap: wrap;align-content: flex-start;overflow-y: scroll;"></div>
+            </div>
+       </div>
+    </div>
+</div>
+
+
+
+<script src="/javascripts/colorpick.js"></script>
+<script src="/javascripts/seban.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+ /* 初始隐藏状态 */
+ .left-tools {
+    
+    top: 0;
+    background-color: rgb(223, 223, 223);
+    width:15vw;
+    height:100%;
+    align-items: center;
+}
+
+.show {
+    left: 0; /* 显示在左边 */
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; /* 确保 main 不会因为 left-tools 出现而发生滚动 */
+    
+}
+
+.toggle-icon {
+    height:100%;
+    height:100%;
+    width:2vw;
+    background-color: gray;
+    text-align: center;
+    line-height:200px;
+}
+
+.tools{
+    display: flex;
+    position: absolute;
+    left:-15vw;
+    height:100%;
+    width:17vw;
+    transition: left 0.5s ease-in;
+}
+.tools-show{
+    display: flex;
+    left:0;
+}
+
+.pic-body{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left:2vw;
+    width:100%;
+    height:100%;
+    transition:width,left  0.5s ease;
+    background-color: blueviolet;
+}
+.pic-body-show{
+    width: calc(100%-12vw);
+    left:17vw;
+}
+.div-of-showpic{
+    background-size: cover;
+    width:100%;
+    height:12vw;
+    margin:0px;
+}
+
+
+/* 模态框的css */
+/* 遮罩层样式 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    z-index: 999; /* 确保遮罩层在顶层 */
+    display: none; /* 初始状态隐藏 */
+    justify-content: flex-start; /* 水平方向靠左 */
+    align-items: center; /* 垂直方向居中 */
+}
+
+/* 模态框样式 */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+.modal-border {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 10px solid black;
+    pointer-events: none; /* 禁用鼠标事件，使其不影响模态框的拖动 */
+  }
+
+/* 关闭按钮样式 */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+
+.seban{
+    width: 4vw;
+    height: 4vw;
+    background-image: url('/someimg/seban.png');
+    background-size: cover;
+    margin-left: 1vw;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+.seban:hover{
+    border-color: seagreen;
+    border-radius: 2px;
+    background-color: azure;
+}
+
+.lock-color{
+    margin-top:1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.o-div{
+    display: flex;
+    flex-direction: column;
+    width: 14vw;
+    height:20vw;
+    align-items: center;
+    margin-left:10px;
+    margin-top:5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: red;
+}

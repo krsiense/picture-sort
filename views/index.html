@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <div id="topdiv"></div>
+    <div id="outdiv" style="width:100%;height:100%">
+        <div class="guidance">
+            <!-- 导航栏 -->
+            <h3>Jigsaw</h3>
+            <div clss="guidance_button" style="background-color: chocolate;">
+                <a href="/index">图片上传</a>
+            </div>
+            <!-- <div clss="guidance_button">
+                <a href="/attribute">图片属性</a>
+            </div> -->
+            <div clss="guidance_button">
+                <a href="/time">预测时间</a>
+            </div>
+            
+            <!-- <div clss="guidance_button">
+                <a href="/picdata">图片库</a>
+            </div> -->
+            <div clss="guidance_button">
+                <a href="/colorpick">颜色筛选</a>
+            </div>
+        </div>
+
+        <!-- 右边主体部分 -->
+        <div class="main">
+            <div class="main-top-div" id="top">
+                <input type="file" id="imageInput" multiple onchange="uploadimg()"><br>
+                <div id="preview"></div>
+                
+                
+            </div>
+            <div id="divider"></div>
+            <div class="main-button-div" id="show-pic">
+                <div id="scrollable-area" style="width: 100%; height: 100%; border: 1px solid black; overflow: auto;">
+                    <!-- 这里放置滚动内容 -->
+                    <div id="showarea" style="height: 1000px; background-color: #f0f0f0; display: flex;flex-wrap: wrap;align-content: flex-start;">
+                      <!-- 这是滚动内容 -->
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="/javascripts/showpic.js"  defer></script>
+    <script src="/javascripts/uploadImg.js" defer></script>
+    
+</body>
+</html>

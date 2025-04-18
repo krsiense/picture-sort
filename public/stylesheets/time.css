@@ -1,0 +1,59 @@
+.left-pics{
+    background-color: rgb(219, 221, 218);
+    width:70%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.search-label{
+    display: flex;
+    height:5vw;
+
+}
+
+.time-pic-show{
+    background-color: burlywood;
+    height: 90%;
+    width:100%;
+    flex-grow: 1;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.middle-mainbody{
+    background-color: green;
+    width: 40%;
+    height:100%;
+
+}
+
+.right-mainbody{
+    background-color: aquamarine;
+    flex-grow: 1;
+}
+
+/* 中间部分选中图片显示 */
+#picture-show{
+    margin-top:10%;
+    margin-left: 5%;
+    background-color: black;
+    width: 30vw;
+    height: 30vw;
+    
+}
+
+#picture-of-blocks{
+    width: 30vw;
+    height: 30vw;
+    background-color: black;
+    margin-top:10%;
+    margin-left: 10%;
+}
+
+#datashow{
+    text-transform: initial;
+}

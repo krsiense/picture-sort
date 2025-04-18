@@ -1,0 +1,146 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#topdiv{
+    background-color: aquamarine;
+    height: 20px;
+    width:100%;
+}
+
+#outdiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+/* 左侧导航栏 */
+.guidance{
+    /* margin-left: 10px; */
+    /* margin-top:20px; */
+    background-color: brown;
+    width: 8%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 垂直居中 */
+}
+
+.guidance div{
+    background-color: aqua;
+    width:90%;
+    height:5%;
+    margin-top:5px;
+    border-radius: 10px;
+    border-color: rgb(3, 250, 65);
+    border-style: solid;
+    border-width: 5px;
+
+    display: grid;
+    place-items: center; /* 垂直和水平居中 */
+
+}
+
+.guidance div:hover,.hovered{
+    background-color: blue;
+    width:90%;
+    height:5%;
+    margin-top:5px;
+    border-radius: 10px;
+    border-color: rgb(3, 250, 65);
+    border-style: solid;
+    border-width: 5px;
+}
+
+.guidance div a{
+    text-decoration: none;
+    color:black;
+}
+
+
+
+/* 主体 */
+.main{
+    background-color: blue;
+    
+    height:100%;
+    /* width:calc(92%-10px); */
+    width:100%;
+
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    /* margin-top:20px; */
+}
+
+
+#guidance a {
+    display: block; /* 确保a元素是块级元素 */
+    margin-top: 10px; /* 添加10px的下边距 */
+}
+  
+ #guidance a:last-child {
+    margin-bottom: 0; /* 最后一个元素不添加下边距 */
+}
+
+.main-top-div{
+    height:70%;
+    width:100%;
+    position: relative;
+}
+
+#imageInput{
+    margin-top:5%;
+    margin-left: 5%;
+}
+
+
+
+/* 显示上传的最后一张图片的preview */
+#preview{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:512px;
+    height:512px;
+    background-color:aquamarine;
+    align-items: center; /* 垂直居中 */
+    background-size: cover;
+    
+}
+
+#uploadButton{
+    position: relative;
+    top: calc(50% + 200px); /* 将新的 div 放在 preview 的下面，假设 preview 的高度为 512px */
+    left: 50%;
+    transform: translateX(-40%);
+}
+
+#divider {
+    height: 2px;
+    background-color: black;
+    cursor: ns-resize; /* 显示垂直调整大小的光标 */
+}
+
+
+.main-button-div{
+    background-color: black;
+    width:100%;
+    height: 30%;
+    width: 100%;
+
+
+}
+
+.div-of-showpic{
+    background-size: cover;
+    width:10%;
+    height:0px;
+    padding-bottom: 10%;
+    margin-left:20px;
+    margin-top:10px;
+    border: 2px solid black;
+}

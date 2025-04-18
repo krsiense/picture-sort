@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Picker</title>
+<style>
+  .color-picker-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .color-grid {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden; /* 隐藏超出容器的部分 */
+    transform: scaleY(-1); /* Y轴翻转 */
+  }
+  .color-square {
+    position: absolute;
+    width: 1px; /* 每个正方形的宽度 */
+    height: 1px; /* 每个正方形的高度 */
+  }
+  .color-slider {
+    height: 250px;
+    width: 20px;
+    background: linear-gradient(to bottom, red, yellow, lime, cyan, blue, magenta, red);
+    margin-left: 20px;
+  }
+  .color-info {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="color-picker-container">
+  <div class="color-grid" id="color-grid">
+    <!-- Color squares will be added here dynamically -->
+  </div>
+  <div class="color-slider" id="color-slider"></div>
+</div>
+<div class="color-info" id="color-info">
+  <!-- Color information will be added here dynamically -->
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const colorGrid = document.getElementById('color-grid');
+    const colorSlider = document.getElementById('color-slider');
+    const colorInfo = document.getElementById('color-info');
+
+    // Create color squares in the color grid
+    for (let g = 0; g <= 255; g++) {
+      for (let r = 0; r <= 255; r++) {
+        const colorSquare = document.createElement('div');
+        colorSquare.className = 'color-square';
+        colorSquare.style.left = `${r}px`;
+        colorSquare.style.top = `${g}px`; // 修正top属性，使色彩从底部开始
+        colorSquare.style.backgroundColor = `rgb(${r}, ${g}, 255)`;
+        colorGrid.appendChild(colorSquare);
+      }
+    }
+
+    // Add event listener for color slider
+    colorSlider.addEventListener('input', function() {
+      const sliderValue = this.value;
+      const color = `rgb(${sliderValue}, ${sliderValue}, ${sliderValue})`;
+      colorGrid.style.backgroundColor = color;
+      colorInfo.innerHTML = `HEX: ${rgbToHex(sliderValue, sliderValue, sliderValue)}<br>
+                             RGB: ${sliderValue}, ${sliderValue}, ${sliderValue}<br>
+                             HSL: ${rgbToHsl(sliderValue, sliderValue, sliderValue)}`;
+    });
+
+    // Function to convert RGB to HEX
+    function rgbToHex(r, g, b) {
+      return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    }
+
+    // Function to convert RGB to HSL
+    function rgbToHsl(r, g, b) {
+      r /= 255, g /= 255, b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+
+      if (max === min) {
+        h = s = 0;
+      } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+
+      return `${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%`;
+    }
+  });
+</script>
+
+</body>
+</html>
